@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juego Didáctico Andino</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Juego Didáctico Andino</h1>
+    <p id="frase-motivacional">¡Aprender la cultura andina también es celebrar nuestras raíces!</p>
+  </header>
+
+  <nav>
+    <button onclick="mostrarJuego('juego1')">Juego 1: Vestimenta e instrumentos</button>
+    <button onclick="mostrarJuego('juego2')">Juego 2: Completar con Kichwa</button>
+    <button onclick="mostrarJuego('juego3')">Juego 3: Línea de tiempo</button>
+    <button onclick="mostrarTraducciones()">Ver Traducciones</button>
+    <button onclick="reiniciarJuego()">Reiniciar</button>
+    <button onclick="intentarDeNuevo()">Volver a Intentar</button>
+  </nav>
+
+  <main>
+    <section id="contenedor-juego">
+      <p>Selecciona un juego para comenzar.</p>
+    </section>
+    
+    <section id="retroalimentacion"></section>
+    <section id="traducciones" style="display:none;"></section>
+  </main>
+
+  <footer>
+    <small>© 2025 - Proyecto Educativo Andino | Desarrollado con fines didácticos.</small>
+  </footer>
+
+  <script src="./js/traducciones.js"></script>
+  <script src="./js/juego1.js"></script>
+  <script src="./js/juego2.js"></script>
+  <script src="./js/juego3.js"></script>
+
+  <script>
+    let juegoActual = null;
+
+    function mostrarJuego(juego) {
+      if (juego === 'juego1') {
+        juego1();
+        juegoActual = 'juego1';
+      } else if (juego === 'juego2') {
+        juego2();
+        juegoActual = 'juego2';
+      } else if (juego === 'juego3') {
+        juego3();
+        juegoActual = 'juego3';
+      }
+      document.getElementById('retroalimentacion').innerHTML = '';
+      document.getElementById('traducciones').style.display = 'none';
+    }
+
+    function mostrarTraducciones() {
+      const traduccionesHTML = obtenerTraducciones();
+      const div = document.getElementById('traducciones');
+      div.innerHTML = traduccionesHTML;
+      div.style.display = 'block';
+    }
+
+    function reiniciarJuego() {
+      mostrarJuego(juegoActual);
+    }
+
+    function intentarDeNuevo() {
+      mostrarJuego(juegoActual);
+    }
+  </script>
+</body>
+</html>
